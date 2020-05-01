@@ -6,21 +6,17 @@ public class Customer {
 
 	private int cId;
 	private String cName;
-	private String email;
-	private String mobileNumber;
-	private String address;
+	private String category;
 
 	private List<Invoice> invoice;
 
 	public Customer() {
 	}
 
-	public Customer(int cId, String cName, String email, String mobileNumber, String address, List<Invoice> invoice) {
+	public Customer(int cId, String cName, String category, List<Invoice> invoice) {
 		this.cId = cId;
 		this.cName = cName;
-		this.email = email;
-		this.mobileNumber = mobileNumber;
-		this.address = address;
+		this.category = category;
 		this.invoice = invoice;
 	}
 
@@ -40,28 +36,12 @@ public class Customer {
 		this.cName = cName;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getCategory() {
+		return category;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getMobileNumber() {
-		return mobileNumber;
-	}
-
-	public void setMobileNumber(String mobileNumber) {
-		this.mobileNumber = mobileNumber;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public List<Invoice> getInvoice() {
