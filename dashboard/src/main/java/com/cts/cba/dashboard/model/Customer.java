@@ -1,62 +1,55 @@
 package com.cts.cba.dashboard.model;
 
+import java.util.List;
+
 public class Customer {
 
 	private int cId;
 	private String cName;
-	private String email;
-	private String mobileNumber;
-	private String address;
+	private String category;
+
+	private List<Invoice> invoice;
 
 	public Customer() {
 	}
 
-	public Customer(int cId, String cName, String email, String mobileNumber, String address) {
+	public Customer(int cId, String cName, String category, List<Invoice> invoice) {
 		this.cId = cId;
 		this.cName = cName;
-		this.email = email;
-		this.mobileNumber = mobileNumber;
-		this.address = address;
+		this.category = category;
+		this.invoice = invoice;
 	}
 
-	public int getCId() {
+	public int getcId() {
 		return cId;
 	}
 
-	public void setCId(int cId) {
+	public void setcId(int cId) {
 		this.cId = cId;
 	}
 
-	public String getCName() {
+	public String getcName() {
 		return cName;
 	}
 
-	public void setCName(String cName) {
+	public void setcName(String cName) {
 		this.cName = cName;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getCategory() {
+		return category;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
-	public String getMobileNumber() {
-		return mobileNumber;
+	public List<Invoice> getInvoice() {
+		return invoice;
 	}
 
-	public void setMobileNumber(String mobileNumber) {
-		this.mobileNumber = mobileNumber;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
+	public void setInvoice(List<Invoice> invoice) {
+		this.invoice = invoice;
 	}
 
 }

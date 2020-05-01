@@ -12,13 +12,12 @@ public class Invoice {
 	private String payMode;
 
 	private List<Product> product;
-	private Customer customer;
 
 	public Invoice() {
 	}
 
 	public Invoice(int iId, LocalDate iDate, int quantity, double tax, double totalPrice, String payMode,
-			List<Product> product, Customer customer) {
+			List<Product> product) {
 		this.iId = iId;
 		this.iDate = iDate;
 		this.quantity = quantity;
@@ -26,7 +25,6 @@ public class Invoice {
 		this.totalPrice = totalPrice;
 		this.payMode = payMode;
 		this.product = product;
-		this.customer = customer;
 	}
 
 	public int getiId() {
@@ -75,14 +73,6 @@ public class Invoice {
 
 	public void setiDate(LocalDate iDate) {
 		this.iDate = iDate;
-	}
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
 	}
 
 	public List<Product> getProduct() {

@@ -1,14 +1,18 @@
 
+create database cba_;
+use cba_;
+
 create database cba;
 use cba;
-drop database cba;
+
+
+show tables;
+drop database cba_;
 
 CREATE TABLE customer (
     cid INT PRIMARY KEY,
-    cname VARCHAR(300) NOT NULL,
-    email VARCHAR(200) NOT NULL,
-    mobile CHAR(10) NOT NULL,
-    addr VARCHAR(2000) NOT NULL
+    cat VARCHAR(5) NOT NULL,
+    cname VARCHAR(300) NOT NULL
 );
 
 INSERT INTO customer VALUES(101,'Harsha','harsha123@gmail.com','9739955954','Banglore');
@@ -36,8 +40,7 @@ CREATE TABLE product (
     brand VARCHAR(500) NOT NULL,
     descr VARCHAR(2000),
     price DOUBLE NOT NULL,
-    stock INT NOT NULL,
-    did INT REFERENCES discount (did)
+    stock INT NOT NULL
 );
 
 INSERT INTO product VALUES(1111,'Coffee powder','Food & Beverages','Nescafe','Good',74.69,50,1);
@@ -62,9 +65,7 @@ drop table product;
 CREATE TABLE invoice (
     iid INT PRIMARY KEY,
     idate DATETIME NOT NULL,
-    cid int references customer(cid),
-    pid INT REFERENCES product (pid),
-    qty INT NOT NULL,
+    cid INT REFERENCES customer (cid),
     tax DOUBLE NOT NULL,
     tprice DOUBLE NOT NULL,
     paymode VARCHAR(50) NOT NULL
@@ -89,12 +90,30 @@ INSERT INTO invoice VALUES(215,'2019-05-20 11:03:00',106,1125,7,24.1255,506.6355
 select * from invoice;
 drop table invoice;
 
+CREATE TABLE invoice_product (
+    iid INT NOT NULL REFERENCES invoice (iid),
+    pid INT NOT NULL REFERENCES product (pid),
+    PRIMARY KEY (iid , pid),
+    qty INT NOT NULL
+);
+
+
+select * from invoice_product;
+
 CREATE TABLE discount (
     did INT PRIMARY KEY,
     dname VARCHAR(50) NOT NULL,
     descr VARCHAR(2000),
     dprice DOUBLE NOT NULL
 );
+
+CREATE TABLE product_discount (
+    pid INT NOT NULL REFERENCES product (pid),
+    did INT NOT NULL REFERENCES discount (did),
+    PRIMARY KEY (pid , did)
+);
+
+select * from product_discount;
 
 INSERT INTO discount VALUES(1,'No Discount','Zero perc discount',0);
 INSERT INTO discount VALUES(2,'Super 20perc','20 perc discount',0.20);

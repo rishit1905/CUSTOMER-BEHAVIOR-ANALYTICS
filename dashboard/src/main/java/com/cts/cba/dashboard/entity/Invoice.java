@@ -7,7 +7,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,14 +18,14 @@ public class Invoice {
 
 	@Column(name = "idate", nullable = false)
 	private LocalDate iDate;
-	
+
 	@Column(name = "qty", nullable = false)
 	private int quantity;
 
 	@Column(name = "tax", nullable = false)
 	private double tax;
 
-	@Column(name ="tprice", nullable = false)
+	@Column(name = "tprice", nullable = false)
 	private double totalPrice;
 
 	@Column(name = "paymode", nullable = false)
@@ -34,15 +33,12 @@ public class Invoice {
 
 	@ManyToMany
 	private List<Product> product;
-	
-	@ManyToOne
-	private Customer customer;
 
 	public Invoice() {
 	}
 
 	public Invoice(int iId, LocalDate iDate, int quantity, double tax, double totalPrice, String payMode,
-			List<Product> product, Customer customer) {
+			List<Product> product) {
 		this.iId = iId;
 		this.iDate = iDate;
 		this.quantity = quantity;
@@ -50,7 +46,6 @@ public class Invoice {
 		this.totalPrice = totalPrice;
 		this.payMode = payMode;
 		this.product = product;
-		this.customer = customer;
 	}
 
 	public int getiId() {
@@ -99,14 +94,6 @@ public class Invoice {
 
 	public void setiDate(LocalDate iDate) {
 		this.iDate = iDate;
-	}
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
 	}
 
 	public List<Product> getProduct() {
