@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -32,6 +34,10 @@ public class Invoice {
 	private String payMode;
 
 	@ManyToMany
+	@JoinTable(name = "invoice_product", joinColumns = {
+			@JoinColumn(name = "iid", referencedColumnName = "iid", nullable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "pid", referencedColumnName = "pid", nullable = false) }
+	)
 	private List<Product> product;
 
 	public Invoice() {
