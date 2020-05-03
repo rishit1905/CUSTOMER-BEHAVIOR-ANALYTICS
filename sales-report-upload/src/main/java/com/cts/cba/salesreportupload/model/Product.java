@@ -1,24 +1,26 @@
 package com.cts.cba.salesreportupload.model;
 
-import java.util.List;
+import java.util.Set;
 
 public class Product {
 	private int pId;
 	private String pName;
+	private String category;
 	private String brand;
 	private String description;
 	private double price;
 	private int stock;
 
-	private List<Discount> discount;
+	private Set<Discount> discount;
 
 	public Product() {
 	}
 
-	public Product(int pId, String pName, String brand, String description, double price, int stock,
-			List<Discount> discount) {
+	public Product(int pId, String pName, String category, String brand, String description, double price, int stock,
+			Set<Discount> discount) {
 		this.pId = pId;
 		this.pName = pName;
+		this.category = category;
 		this.brand = brand;
 		this.description = description;
 		this.price = price;
@@ -40,6 +42,14 @@ public class Product {
 
 	public void setpName(String pName) {
 		this.pName = pName;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public String getBrand() {
@@ -74,11 +84,11 @@ public class Product {
 		this.stock = stock;
 	}
 
-	public List<Discount> getDiscount() {
+	public Set<Discount> getDiscount() {
 		return discount;
 	}
 
-	public void setDiscount(List<Discount> discount) {
+	public void setDiscount(Set<Discount> discount) {
 		this.discount = discount;
 	}
 

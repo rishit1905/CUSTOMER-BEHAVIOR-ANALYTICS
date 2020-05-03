@@ -1,10 +1,12 @@
 package com.cts.cba.salesreportupload.entity;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -18,6 +20,9 @@ public class Product {
 	@Column(name = "pname", nullable = false)
 	private String pName;
 
+	@Column(name = "category", nullable = false)
+	private String category;
+
 	@Column(name = "brand", nullable = false)
 	private String brand;
 
@@ -29,17 +34,22 @@ public class Product {
 
 	@Column(name = "stock", nullable = false)
 	private int stock;
-	
+
 	@ManyToMany
-	private List<Discount> discount;
+	@JoinTable(name = "product_discount", joinColumns = {
+			@JoinColumn(name = "pid", referencedColumnName = "pid", nullable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "did", referencedColumnName = "did", nullable = false) }
+	)
+	private Set<Discount> discount;
 
 	public Product() {
 	}
 
-	public Product(int pId, String pName, String brand, String description, double price, int stock,
-			List<Discount> discount) {
+	public Product(int pId, String pName, String category, String brand, String description, double price, int stock,
+			Set<Discount> discount) {
 		this.pId = pId;
 		this.pName = pName;
+		this.category = category;
 		this.brand = brand;
 		this.description = description;
 		this.price = price;
@@ -61,6 +71,14 @@ public class Product {
 
 	public void setpName(String pName) {
 		this.pName = pName;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public String getBrand() {
@@ -95,11 +113,11 @@ public class Product {
 		this.stock = stock;
 	}
 
-	public List<Discount> getDiscount() {
+	public Set<Discount> getDiscount() {
 		return discount;
 	}
 
-	public void setDiscount(List<Discount> discount) {
+	public void setDiscount(Set<Discount> discount) {
 		this.discount = discount;
 	}
 

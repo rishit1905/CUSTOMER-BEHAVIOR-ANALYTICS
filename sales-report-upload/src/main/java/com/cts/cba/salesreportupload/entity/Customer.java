@@ -1,6 +1,6 @@
 package com.cts.cba.salesreportupload.entity;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,18 +19,22 @@ public class Customer {
 	private String cName;
 
 	@Column(name = "cat", nullable = false)
-	private String category;
+	private String cat;
+
+	@Column(name = "location", nullable = false)
+	private String location;
 
 	@OneToMany
-	private List<Invoice> invoice;
+	private Set<Invoice> invoice;
 
 	public Customer() {
 	}
 
-	public Customer(int cId, String cName, String category, List<Invoice> invoice) {
+	public Customer(int cId, String cName, String cat, String location, Set<Invoice> invoice) {
 		this.cId = cId;
 		this.cName = cName;
-		this.category = category;
+		this.cat = cat;
+		this.location = location;
 		this.invoice = invoice;
 	}
 
@@ -50,19 +54,27 @@ public class Customer {
 		this.cName = cName;
 	}
 
-	public String getCategory() {
-		return category;
+	public String getCat() {
+		return cat;
 	}
 
-	public void setCategory(String category) {
-		this.category = category;
+	public void setCat(String cat) {
+		this.cat = cat;
 	}
 
-	public List<Invoice> getInvoice() {
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public Set<Invoice> getInvoice() {
 		return invoice;
 	}
 
-	public void setInvoice(List<Invoice> invoice) {
+	public void setInvoice(Set<Invoice> invoice) {
 		this.invoice = invoice;
 	}
 
