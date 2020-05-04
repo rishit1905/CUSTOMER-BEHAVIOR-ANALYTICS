@@ -10,29 +10,40 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 @Table(name = "product")
+@ApiModel(description = "Product Details")
 public class Product {
 	@Id
 	@Column(name = "pid")
+	@ApiModelProperty(notes = "Product ID")
 	private int pId;
 
 	@Column(name = "pname", nullable = false)
+	@ApiModelProperty(notes = "Product Name")
 	private String pName;
 
 	@Column(name = "category", nullable = false)
+	@ApiModelProperty(notes = "Product Category")
 	private String category;
 
 	@Column(name = "brand", nullable = false)
+	@ApiModelProperty(notes = "Product Brand")
 	private String brand;
 
 	@Column(name = "descr")
+	@ApiModelProperty(notes = "Product Description")
 	private String description;
 
 	@Column(name = "price", nullable = false)
+	@ApiModelProperty(notes = "Product Price")
 	private double price;
 
 	@Column(name = "stock", nullable = false)
+	@ApiModelProperty(notes = "Product Stock")
 	private int stock;
 
 	@ManyToMany
@@ -40,6 +51,7 @@ public class Product {
 			@JoinColumn(name = "pid", referencedColumnName = "pid", nullable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "did", referencedColumnName = "did", nullable = false) }
 	)
+	@ApiModelProperty(notes = "List of discounts on Product")
 	private Set<Discount> discount;
 
 	public Product() {

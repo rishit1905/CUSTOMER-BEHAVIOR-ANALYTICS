@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+
 @RestController
 @RequestMapping("/products")
 public class ProductListController {
@@ -24,7 +27,10 @@ public class ProductListController {
     // }
 
     @RequestMapping("/soldproductlist/{timeDuration}/{cat}")
-    List<Product> getProductSold(@PathVariable int timeDuration, @PathVariable String cat) {
+    @ApiOperation(value = "Gets list of discounted/non-discounted products", notes = "Generates list of discounted sales based on time interval, customer category")
+    List<Product> getProductSold(
+            @ApiParam(value = "Time duration in months", required = true) @PathVariable int timeDuration,
+            @ApiParam(value = "Category of customers", required = true) @PathVariable String cat) {
         return (List<Product>) service.getProductSold(timeDuration, cat);
     }
 
@@ -34,13 +40,20 @@ public class ProductListController {
     // }
 
     @RequestMapping("/soldproductlist/priceRange/{timeDuration}/{cat}/{startPrice}/{endPrice}")
-    List<Product> getAllProductByPriceRange(@PathVariable int timeDuration, @PathVariable String cat,
-            @PathVariable double startPrice, @PathVariable double endPrice) {
+    @ApiOperation(value = "Gets list of products", notes = "Generates list of products and their sales details based on time interval, customer category, range of product price")
+    List<Product> getAllProductByPriceRange(
+            @ApiParam(value = "Time duration in months", required = true) @PathVariable int timeDuration,
+            @ApiParam(value = "Category of customers", required = true) @PathVariable String cat,
+            @ApiParam(value = "Starting price of product", required = true) @PathVariable double startPrice,
+            @ApiParam(value = "Ending price of product", required = true) @PathVariable double endPrice) {
         return (List<Product>) service.getAllProductByPriceRange(timeDuration, cat, startPrice, endPrice);
     }
 
     @RequestMapping("/solddiscountlist/{timeDuration}/{cat}")
-    List<Product> getAllProductByDiscount(@PathVariable int timeDuration, @PathVariable String cat) {
+    @ApiOperation(value = "Gets list of products", notes = "Generates list of products and their sales details based on time interval, customer category")
+    List<Product> getAllProductByDiscount(
+            @ApiParam(value = "Time duration in months", required = true) @PathVariable int timeDuration,
+            @ApiParam(value = "Category of customers", required = true) @PathVariable String cat) {
         return (List<Product>) service.getAllProductByDiscount(timeDuration, cat);
     }
 
