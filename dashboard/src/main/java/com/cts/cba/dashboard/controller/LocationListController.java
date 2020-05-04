@@ -13,12 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/locations")
 public class LocationListController {
-    
+
     @Autowired
     LocationListService service;
 
-    @RequestMapping("/soldlocationlist/{location}")
-    List<Product> getAllByLocation(@PathVariable String location){
-        return service.getAllByLocation(location);
+    @RequestMapping("/soldlocationlist/{timeDuration}/{cat}/{location}")
+    List<Product> getAllByLocation(@PathVariable int timeDuration, @PathVariable String cat,
+            @PathVariable String location) {
+        return service.getAllByLocation(timeDuration, cat, location);
     }
 }

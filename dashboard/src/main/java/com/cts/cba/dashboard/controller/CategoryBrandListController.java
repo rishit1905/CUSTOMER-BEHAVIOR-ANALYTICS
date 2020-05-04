@@ -13,17 +13,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/categories")
 public class CategoryBrandListController {
-    
+
     @Autowired
     CategoryBrandListService service;
 
-    @RequestMapping("/soldcategorylist/{category}")
-    List<Product> getAllProductByCategory(@PathVariable String category) {
-        return (List<Product>) service.getAllProductByCategory(category);
+    @RequestMapping("/soldcategorylist/{timeDuration}/{cat}/{category}")
+    List<Product> getAllProductByCategory(@PathVariable int timeDuration, @PathVariable String cat,
+            @PathVariable String category) {
+        return (List<Product>) service.getAllProductByCategory(timeDuration, cat, category);
     }
 
-    @RequestMapping("/soldbrandlist/{brand}")
-    List<Product> getAllProductByBrand(@PathVariable String brand) {
-        return (List<Product>) service.getAllProductByBrand(brand);
+    @RequestMapping("/soldbrandlist/{timeDuration}/{cat}/{brand}")
+    List<Product> getAllProductByBrand(@PathVariable int timeDuration, @PathVariable String cat,
+            @PathVariable String brand) {
+        return (List<Product>) service.getAllProductByBrand(timeDuration, cat, brand);
     }
 }

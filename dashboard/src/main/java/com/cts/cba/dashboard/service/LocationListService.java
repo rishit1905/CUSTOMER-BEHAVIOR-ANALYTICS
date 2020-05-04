@@ -14,8 +14,8 @@ public class LocationListService {
     @Autowired
     LocationListRepo repo;
 
-    public List<Product> getAllByLocation(String location) {
-        return (List<Product>)repo.findAllByLocation(location);
+    public List<Product> getAllByLocation(int timeDuration, String cat, String location) {
+        return (List<Product>) repo.findAllByLocation(timeDuration, cat, location);
     }
 
 }

@@ -11,15 +11,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class CategoryBrandListService {
 
-    @Autowired
-    CategoryBrandListRepo repo;
+	@Autowired
+	CategoryBrandListRepo repo;
 
-    public List<Product> getAllProductByCategory(String category) {
-		return (List<Product>)repo.findAllByCategory(category);
+	public List<Product> getAllProductByCategory(int timeDuration, String cat, String category) {
+		return (List<Product>) repo.findAllByCategory(timeDuration, cat, category);
 	}
 
-	public List<Product> getAllProductByBrand(String brand) {
-		return (List<Product>)repo.findAllByBrand(brand);
+	public List<Product> getAllProductByBrand(int timeDuration, String cat, String brand) {
+		return (List<Product>) repo.findAllByBrand(timeDuration, cat, brand);
 	}
 
 }
