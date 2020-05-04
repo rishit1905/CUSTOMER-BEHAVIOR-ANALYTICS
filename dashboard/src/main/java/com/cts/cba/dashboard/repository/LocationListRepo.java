@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface LocationListRepo extends CrudRepository<Product, Integer> {
 
-   @Query(value = "SELECT * FROM product p WHERE p.pid IN(SELECT pid FROM invoice_product i WHERE i.iid IN(SELECT iid FROM invoice j WHERE j.cid IN(SELECT cid FROM customer c WHERE c.location=:location)))", nativeQuery = true)
-	List<Product> findAllByLocation(String location);
+   @Query(value = "SELECT * FROM product p WHERE p.pid IN(SELECT pid FROM invoice_product i WHERE i.iid IN(SELECT iid FROM invoice j WHERE j.idate>=DATE_SUB(CURDATE(), INTERVAL :timeDuration MONTH) AND j.cid IN(SELECT cid FROM customer c WHERE c.cat=:cat AND c.location=:location)))", nativeQuery = true)
+	List<Product> findAllByLocation(int timeDuration, String cat, String location);
 
 }

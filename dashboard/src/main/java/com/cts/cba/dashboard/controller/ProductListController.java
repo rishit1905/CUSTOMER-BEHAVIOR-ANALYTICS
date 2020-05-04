@@ -18,23 +18,30 @@ public class ProductListController {
     @Autowired
     ProductListService service;
 
-    @RequestMapping("/soldproductlist")
-    List<Product> getAllProduct() {
-        return (List<Product>) service.getAllProduct();
+    // @RequestMapping("/soldproductlist")
+    // List<Product> getAllProduct() {
+    // return (List<Product>) service.getAllProduct();
+    // }
+
+    @RequestMapping("/soldproductlist/{timeDuration}/{cat}")
+    List<Product> getProductSold(@PathVariable int timeDuration, @PathVariable String cat) {
+        return (List<Product>) service.getProductSold(timeDuration, cat);
     }
 
     // @RequestMapping("/soldproductlist/{id}")
     // Optional<Product> getProductById(@PathVariable int id){
-    //     return  service.getProductById(id);
+    // return service.getProductById(id);
     // }
 
-    @RequestMapping("/soldproductlist/priceRange/{startPrice}/{endPrice}")
-    List<Product> getAllProductByPriceRange(@PathVariable double startPrice, @PathVariable double endPrice ) {
-        return (List<Product>) service.getAllProductByPriceRange(startPrice, endPrice);
+    @RequestMapping("/soldproductlist/priceRange/{timeDuration}/{cat}/{startPrice}/{endPrice}")
+    List<Product> getAllProductByPriceRange(@PathVariable int timeDuration, @PathVariable String cat,
+            @PathVariable double startPrice, @PathVariable double endPrice) {
+        return (List<Product>) service.getAllProductByPriceRange(timeDuration, cat, startPrice, endPrice);
     }
 
-    @RequestMapping("/soldproductlist/{cat}")
-    List<Product> getProductSold(@PathVariable String cat) {
-        return (List<Product>) service.getProductSold(cat);
+    @RequestMapping("/solddiscountlist/{timeDuration}/{cat}")
+    List<Product> getAllProductByDiscount(@PathVariable int timeDuration, @PathVariable String cat) {
+        return (List<Product>) service.getAllProductByDiscount(timeDuration, cat);
     }
+
 }

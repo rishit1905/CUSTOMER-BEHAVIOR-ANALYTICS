@@ -10,8 +10,8 @@ drop database cba;
 
 CREATE TABLE customer (
     cid INT PRIMARY KEY,
-    cname VARCHAR(300) NOT NULL,
     cat VARCHAR(5) NOT NULL,
+    cname VARCHAR(300) NOT NULL,
     location VARCHAR(50) NOT NULL
 );
 
@@ -32,6 +32,7 @@ INSERT INTO customer VALUES(114,'cat2','Samhitha','Pune');
 INSERT INTO customer VALUES(115,'cat3','Pruthvi','Pune');
 
 select * from customer;
+drop table customer;
 
 CREATE TABLE product (
     pid INT PRIMARY KEY,
