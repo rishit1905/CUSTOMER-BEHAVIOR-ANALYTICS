@@ -5,20 +5,28 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 @Table(name="discount")
+@ApiModel(description = "Discount Details")
 public class Discount {
 	@Id
 	@Column(name = "did")
+	@ApiModelProperty(notes = "Discount ID")
 	private int dId;
 
 	@Column(name = "dname", nullable = false)
+	@ApiModelProperty(notes = "Discount Name")
 	private String dName;
 
 	@Column(name = "descr")
+	@ApiModelProperty(notes = "Discount Description")
 	private String description;
 
 	@Column(name = "dprice", nullable = false)
+	@ApiModelProperty(notes = "Discount Price")
 	private double dPrice;
 
 	public Discount() {

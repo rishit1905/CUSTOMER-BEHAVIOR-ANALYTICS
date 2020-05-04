@@ -8,23 +8,32 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 @Table(name = "customer")
+@ApiModel(description = "Details about customer")
 public class Customer {
 	@Id
 	@Column(name = "cid")
+	@ApiModelProperty(notes = "Customer ID")
 	private int cId;
 
 	@Column(name = "cname", nullable = false)
+	@ApiModelProperty(notes = "Customer Name")
 	private String cName;
 
 	@Column(name = "cat", nullable = false)
+	@ApiModelProperty(notes = "Customer Category")
 	private String cat;
 
 	@Column(name = "location", nullable = false)
+	@ApiModelProperty(notes = "Customer Location")
 	private String location;
 
 	@OneToMany
+	@ApiModelProperty(notes = "List of invoices")
 	private Set<Invoice> invoice;
 
 	public Customer() {

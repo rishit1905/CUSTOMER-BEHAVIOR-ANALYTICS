@@ -11,33 +11,43 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 @Table(name = "invoice")
+@ApiModel(description = "Invoice Details")
 public class Invoice {
 	@Id
 	@Column(name = "iid")
+	@ApiModelProperty(notes = "Invoice ID")
 	private int iId;
 
 	@Column(name = "idate", nullable = false)
+	@ApiModelProperty(notes = "Invoice Date")
 	private LocalDate iDate;
 
 	@Column(name = "qty", nullable = false)
+	@ApiModelProperty(notes = "Invoice Quantity")
 	private int quantity;
 
 	@Column(name = "tax", nullable = false)
+	@ApiModelProperty(notes = "GST")
 	private double tax;
 
 	@Column(name = "tprice", nullable = false)
+	@ApiModelProperty(notes = "Shopping Amount")
 	private double totalPrice;
 
 	@Column(name = "paymode", nullable = false)
+	@ApiModelProperty(notes = "Mode of Payment")
 	private String payMode;
 
 	@ManyToMany
 	@JoinTable(name = "invoice_product", joinColumns = {
 			@JoinColumn(name = "iid", referencedColumnName = "iid", nullable = false) }, inverseJoinColumns = {
-					@JoinColumn(name = "pid", referencedColumnName = "pid", nullable = false) }
-	)
+					@JoinColumn(name = "pid", referencedColumnName = "pid", nullable = false) })
+	@ApiModelProperty(notes = "List of Products Purchased")
 	private List<Product> product;
 
 	public Invoice() {
