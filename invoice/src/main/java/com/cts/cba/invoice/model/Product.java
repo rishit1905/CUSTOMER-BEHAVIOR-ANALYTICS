@@ -1,4 +1,4 @@
-package com.cts.cba.dashboard.model;
+package com.cts.cba.invoice.model;
 
 import java.util.Set;
 

@@ -1,4 +1,4 @@
-package com.cts.cba.dashboard.model;
+package com.cts.cba.invoice.model;
 
 import java.time.LocalDate;
 import java.util.List;

@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import io.swagger.annotations.ApiModel;
@@ -21,11 +22,15 @@ public class Invoice {
 	@Id
 	@Column(name = "iid")
 	@ApiModelProperty(notes = "Invoice ID")
-	private int iId;
+	private int invoiceId;
 
 	@Column(name = "idate", nullable = false)
 	@ApiModelProperty(notes = "Invoice Date")
-	private LocalDate iDate;
+	private LocalDate invoiceDate;
+
+	@ManyToOne
+	@ApiModelProperty(notes = "Customer details")
+	private Customer customer;
 
 	@Column(name = "qty", nullable = false)
 	@ApiModelProperty(notes = "Invoice Quantity")
@@ -41,7 +46,7 @@ public class Invoice {
 
 	@Column(name = "paymode", nullable = false)
 	@ApiModelProperty(notes = "Mode of Payment")
-	private String payMode;
+	private String paymentMode;
 
 	@ManyToMany
 	@JoinTable(name = "invoice_product", joinColumns = {
@@ -53,23 +58,32 @@ public class Invoice {
 	public Invoice() {
 	}
 
-	public Invoice(int iId, LocalDate iDate, int quantity, double tax, double totalPrice, String payMode,
-			List<Product> product) {
-		this.iId = iId;
-		this.iDate = iDate;
+	public Invoice(int invoiceId, LocalDate invoiceDate, Customer customer, int quantity, double tax, double totalPrice,
+			String paymentMode, List<Product> product) {
+		this.invoiceId = invoiceId;
+		this.invoiceDate = invoiceDate;
+		this.customer = customer;
 		this.quantity = quantity;
 		this.tax = tax;
 		this.totalPrice = totalPrice;
-		this.payMode = payMode;
+		this.paymentMode = paymentMode;
 		this.product = product;
 	}
 
-	public int getiId() {
-		return iId;
+	public int getInvoiceId() {
+		return invoiceId;
 	}
 
-	public void setiId(int iId) {
-		this.iId = iId;
+	public void setInvoiceId(int invoiceId) {
+		this.invoiceId = invoiceId;
+	}
+
+	public LocalDate getInvoiceDate() {
+		return invoiceDate;
+	}
+
+	public void setInvoiceDate(LocalDate invoiceDate) {
+		this.invoiceDate = invoiceDate;
 	}
 
 	public int getQuantity() {
@@ -96,20 +110,12 @@ public class Invoice {
 		this.totalPrice = totalPrice;
 	}
 
-	public String getPayMode() {
-		return payMode;
+	public String getPaymentMode() {
+		return paymentMode;
 	}
 
-	public void setPayMode(String payMode) {
-		this.payMode = payMode;
-	}
-
-	public LocalDate getiDate() {
-		return iDate;
-	}
-
-	public void setiDate(LocalDate iDate) {
-		this.iDate = iDate;
+	public void setPaymentMode(String paymentMode) {
+		this.paymentMode = paymentMode;
 	}
 
 	public List<Product> getProduct() {
@@ -118,5 +124,13 @@ public class Invoice {
 
 	public void setProduct(List<Product> product) {
 		this.product = product;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 }

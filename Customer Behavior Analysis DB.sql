@@ -61,7 +61,7 @@ INSERT INTO product VALUES(1124,'oil','Food & Beverages','SunPure','Good',68.93,
 INSERT INTO product VALUES(1125,'pen','Home & LifeStyle','Pavithra brite','Average',72.61,5);
 
 select * from product;
-drop table product;
+drop table invoice;
 
 CREATE TABLE invoice (
     iid INT PRIMARY KEY,
