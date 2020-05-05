@@ -4,9 +4,9 @@ import java.util.Set;
 
 public class Customer {
 
-	private int cId;
-	private String cName;
-	private String cat;
+	private int customerId;
+	private String customerName;
+	private String customerCategory;
 	private String location;
 
 	private Set<Invoice> invoice;
@@ -14,36 +14,37 @@ public class Customer {
 	public Customer() {
 	}
 
-	public Customer(int cId, String cName, String cat, String location, Set<Invoice> invoice) {
-		this.cId = cId;
-		this.cName = cName;
-		this.cat = cat;
+	public Customer(int customerId, String customerName, String customerCategory, String location,
+			Set<Invoice> invoice) {
+		this.customerId = customerId;
+		this.customerName = customerName;
+		this.customerCategory = customerCategory;
 		this.location = location;
 		this.invoice = invoice;
 	}
 
-	public int getcId() {
-		return cId;
+	public int getCustomerId() {
+		return customerId;
 	}
 
-	public void setcId(int cId) {
-		this.cId = cId;
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
 	}
 
-	public String getcName() {
-		return cName;
+	public String getCustomerName() {
+		return customerName;
 	}
 
-	public void setcName(String cName) {
-		this.cName = cName;
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}
 
-	public String getCat() {
-		return cat;
+	public String getCustomerCategory() {
+		return customerCategory;
 	}
 
-	public void setCat(String cat) {
-		this.cat = cat;
+	public void setCustomerCategory(String customerCategory) {
+		this.customerCategory = customerCategory;
 	}
 
 	public String getLocation() {

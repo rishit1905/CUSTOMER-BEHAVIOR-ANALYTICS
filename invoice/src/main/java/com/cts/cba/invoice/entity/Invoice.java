@@ -1,17 +1,58 @@
-package com.cts.cba.dashboard.model;
+package com.cts.cba.invoice.entity;
 
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@Entity
+@Table(name = "invoice")
+@ApiModel(description = "Invoice Details")
 public class Invoice {
+	@Id
+	@Column(name = "iid")
+	@ApiModelProperty(notes = "Invoice ID")
 	private int invoiceId;
+
+	@Column(name = "idate", nullable = false)
+	@ApiModelProperty(notes = "Invoice Date")
 	private LocalDate invoiceDate;
+
+	@ManyToOne
+	@ApiModelProperty(notes = "Customer details")
 	private Customer customer;
+
+	@Column(name = "qty", nullable = false)
+	@ApiModelProperty(notes = "Invoice Quantity")
 	private int quantity;
+
+	@Column(name = "tax", nullable = false)
+	@ApiModelProperty(notes = "GST")
 	private double tax;
+
+	@Column(name = "tprice", nullable = false)
+	@ApiModelProperty(notes = "Shopping Amount")
 	private double totalPrice;
+
+	@Column(name = "paymode", nullable = false)
+	@ApiModelProperty(notes = "Mode of Payment")
 	private String paymentMode;
 
+	@ManyToMany
+	@JoinTable(name = "invoice_product", joinColumns = {
+			@JoinColumn(name = "iid", referencedColumnName = "iid", nullable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "pid", referencedColumnName = "pid", nullable = false) })
+	@ApiModelProperty(notes = "List of Products Purchased")
 	private List<Product> product;
 
 	public Invoice() {
@@ -92,5 +133,4 @@ public class Invoice {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-
 }

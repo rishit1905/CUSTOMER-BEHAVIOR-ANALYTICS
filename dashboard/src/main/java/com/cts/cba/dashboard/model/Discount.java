@@ -1,35 +1,35 @@
 package com.cts.cba.dashboard.model;
 
 public class Discount {
-	private int dId;
-	private String dName;
+	private int discountId;
+	private String discountName;
 	private String description;
-	private double dPrice;
+	private double discountPrice;
 
 	public Discount() {
 	}
 
-	public Discount(int dId, String dName, String description, double dPrice) {
-		this.dId = dId;
-		this.dName = dName;
+	public Discount(int discountId, String discountName, String description, double discountPrice) {
+		this.discountId = discountId;
+		this.discountName = discountName;
 		this.description = description;
-		this.dPrice = dPrice;
+		this.discountPrice = discountPrice;
 	}
 
-	public int getdId() {
-		return dId;
+	public int getDiscountId() {
+		return discountId;
 	}
 
-	public void setdId(int dId) {
-		this.dId = dId;
+	public void setDiscountId(int discountId) {
+		this.discountId = discountId;
 	}
 
-	public String getDName() {
-		return dName;
+	public String getDiscountName() {
+		return discountName;
 	}
 
-	public void setDName(String dName) {
-		this.dName = dName;
+	public void setDiscountName(String discountName) {
+		this.discountName = discountName;
 	}
 
 	public String getDescription() {
@@ -40,12 +40,12 @@ public class Discount {
 		this.description = description;
 	}
 
-	public double getDPrice() {
-		return dPrice;
+	public double getDiscountPrice() {
+		return discountPrice;
 	}
 
-	public void setDPrice(double dPrice) {
-		this.dPrice = dPrice;
+	public void setDiscountPrice(double discountPrice) {
+		this.discountPrice = discountPrice;
 	}
 
 }

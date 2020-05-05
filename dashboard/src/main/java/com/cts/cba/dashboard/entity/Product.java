@@ -20,11 +20,11 @@ public class Product {
 	@Id
 	@Column(name = "pid")
 	@ApiModelProperty(notes = "Product ID")
-	private int pId;
+	private int productId;
 
 	@Column(name = "pname", nullable = false)
 	@ApiModelProperty(notes = "Product Name")
-	private String pName;
+	private String productName;
 
 	@Column(name = "category", nullable = false)
 	@ApiModelProperty(notes = "Product Category")
@@ -49,18 +49,17 @@ public class Product {
 	@ManyToMany
 	@JoinTable(name = "product_discount", joinColumns = {
 			@JoinColumn(name = "pid", referencedColumnName = "pid", nullable = false) }, inverseJoinColumns = {
-					@JoinColumn(name = "did", referencedColumnName = "did", nullable = false) }
-	)
+					@JoinColumn(name = "did", referencedColumnName = "did", nullable = false) })
 	@ApiModelProperty(notes = "List of discounts on Product")
 	private Set<Discount> discount;
 
 	public Product() {
 	}
 
-	public Product(int pId, String pName, String category, String brand, String description, double price, int stock,
-			Set<Discount> discount) {
-		this.pId = pId;
-		this.pName = pName;
+	public Product(int productId, String productName, String category, String brand, String description, double price,
+			int stock, Set<Discount> discount) {
+		this.productId = productId;
+		this.productName = productName;
 		this.category = category;
 		this.brand = brand;
 		this.description = description;
@@ -69,20 +68,20 @@ public class Product {
 		this.discount = discount;
 	}
 
-	public int getpId() {
-		return pId;
+	public int getProductId() {
+		return productId;
 	}
 
-	public void setpId(int pId) {
-		this.pId = pId;
+	public void setProductId(int productId) {
+		this.productId = productId;
 	}
 
-	public String getpName() {
-		return pName;
+	public String getProductName() {
+		return productName;
 	}
 
-	public void setpName(String pName) {
-		this.pName = pName;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
 	public String getCategory() {
