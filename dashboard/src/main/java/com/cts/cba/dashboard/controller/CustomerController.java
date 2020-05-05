@@ -8,19 +8,22 @@ import com.cts.cba.dashboard.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
 @RestController
+@Api(tags = "Customer", description = "A controller to activate endpoint related to properties of customer entity")
 @RequestMapping("/customers")
 public class CustomerController {
 
     @Autowired
     CustomerService service;
 
-    @RequestMapping("/soldlocationlist/{timeDuration}/{customerCategory}/{location}")
+    @RequestMapping(method = RequestMethod.GET, value = "/soldlocationlist/{timeDuration}/{customerCategory}/{location}")
     @ApiOperation(value = "Gets list of locations", notes = "Generates list of average sales details based on customer geoagraphy")
     List<Product> getAllByLocation(
             @ApiParam(value = "Time duration in months", required = true) @PathVariable int timeDuration,

@@ -28,8 +28,10 @@ public class DemoApplication {
 				.build().apiInfo(apiDetails());
 	}
 
-	public ApiInfo apiDetails(){
-		return new ApiInfo("Customer Behaviour Analytics", "Enables analysing vivid customer purchase based on customer category. Generates a quantitative statistical report." 
-		, "1.0", "Free To Use", new Contact("Rishabh Nag","http://localhost:9090/","Rishabh.Nag@cognizant.com"), "API License", "http://localhost:9090/", Collections.emptyList());
+	public ApiInfo apiDetails() {
+		return new ApiInfo("Customer Behaviour Analytics",
+				"Enables analysing vivid customer purchase based on customer category. Generates a quantitative statistical report.",
+				"1.0", "Free To Use", new Contact("Rishabh Nag", "http://localhost:9090/", "Rishabh.Nag@cognizant.com"),
+				"API License", "http://localhost:9090/", Collections.emptyList());
 	}
 }

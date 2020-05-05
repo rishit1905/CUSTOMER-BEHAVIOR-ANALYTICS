@@ -28,10 +28,6 @@ public class Invoice {
 	@ApiModelProperty(notes = "Invoice Date")
 	private LocalDate invoiceDate;
 
-	@ManyToOne
-	@ApiModelProperty(notes = "Customer details")
-	private Customer customer;
-
 	@Column(name = "qty", nullable = false)
 	@ApiModelProperty(notes = "Invoice Quantity")
 	private int quantity;
@@ -58,11 +54,10 @@ public class Invoice {
 	public Invoice() {
 	}
 
-	public Invoice(int invoiceId, LocalDate invoiceDate, Customer customer, int quantity, double tax, double totalPrice,
+	public Invoice(int invoiceId, LocalDate invoiceDate, int quantity, double tax, double totalPrice,
 			String paymentMode, List<Product> product) {
 		this.invoiceId = invoiceId;
 		this.invoiceDate = invoiceDate;
-		this.customer = customer;
 		this.quantity = quantity;
 		this.tax = tax;
 		this.totalPrice = totalPrice;
@@ -124,13 +119,5 @@ public class Invoice {
 
 	public void setProduct(List<Product> product) {
 		this.product = product;
-	}
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
 	}
 }

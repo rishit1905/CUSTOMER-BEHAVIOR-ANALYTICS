@@ -6,7 +6,6 @@ import java.util.List;
 public class Invoice {
 	private int invoiceId;
 	private LocalDate invoiceDate;
-	private Customer customer;
 	private int quantity;
 	private double tax;
 	private double totalPrice;
@@ -17,11 +16,10 @@ public class Invoice {
 	public Invoice() {
 	}
 
-	public Invoice(int invoiceId, LocalDate invoiceDate, Customer customer, int quantity, double tax, double totalPrice,
+	public Invoice(int invoiceId, LocalDate invoiceDate, int quantity, double tax, double totalPrice,
 			String paymentMode, List<Product> product) {
 		this.invoiceId = invoiceId;
 		this.invoiceDate = invoiceDate;
-		this.customer = customer;
 		this.quantity = quantity;
 		this.tax = tax;
 		this.totalPrice = totalPrice;
@@ -83,14 +81,6 @@ public class Invoice {
 
 	public void setProduct(List<Product> product) {
 		this.product = product;
-	}
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
 	}
 
 }

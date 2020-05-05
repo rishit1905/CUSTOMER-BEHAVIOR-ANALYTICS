@@ -8,12 +8,15 @@ import com.cts.cba.dashboard.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
 @RestController
+@Api(tags = "Product", description = "A controller to activate endpoints related to properties of product entity")
 @RequestMapping("/products")
 public class ProductController {
 
@@ -25,7 +28,7 @@ public class ProductController {
     // return (List<Product>) service.getAllProduct();
     // }
 
-    @RequestMapping("/soldproductlist/{timeDuration}/{customerCategory}")
+    @RequestMapping(method = RequestMethod.GET, value = "/soldproductlist/{timeDuration}/{customerCategory}")
     @ApiOperation(value = "Gets list of discounted/non-discounted products", notes = "Generates list of discounted sales based on time interval, customer category")
     List<Product> getProductSold(
             @ApiParam(value = "Time duration in months", required = true) @PathVariable int timeDuration,
@@ -38,7 +41,7 @@ public class ProductController {
     // return service.getProductById(id);
     // }
 
-    @RequestMapping("/soldproductlist/priceRange/{timeDuration}/{customerCategory}/{startPrice}/{endPrice}")
+    @RequestMapping(method = RequestMethod.GET, value = "/soldproductlist/priceRange/{timeDuration}/{customerCategory}/{startPrice}/{endPrice}")
     @ApiOperation(value = "Gets list of products", notes = "Generates list of products and their sales details based on time interval, customer category, range of product price")
     List<Product> getAllProductByPriceRange(
             @ApiParam(value = "Time duration in months", required = true) @PathVariable int timeDuration,
@@ -48,7 +51,7 @@ public class ProductController {
         return (List<Product>) service.getAllProductByPriceRange(timeDuration, customerCategory, startPrice, endPrice);
     }
 
-    @RequestMapping("/solddiscountlist/{timeDuration}/{customerCategory}")
+    @RequestMapping(method = RequestMethod.GET, value = "/solddiscountlist/{timeDuration}/{customerCategory}")
     @ApiOperation(value = "Gets list of products", notes = "Generates list of products and their sales details based on time interval, customer category")
     List<Product> getAllProductByDiscount(
             @ApiParam(value = "Time duration in months", required = true) @PathVariable int timeDuration,
@@ -56,7 +59,7 @@ public class ProductController {
         return (List<Product>) service.getAllProductByDiscount(timeDuration, customerCategory);
     }
 
-    @RequestMapping("/soldcategorylist/{timeDuration}/{customerCategory}/{category}")
+    @RequestMapping(method = RequestMethod.GET, value = "/soldcategorylist/{timeDuration}/{customerCategory}/{category}")
     @ApiOperation(value = "Gets list of product categories", notes = "Generates list of categories of products with their average sales details")
     List<Product> getAllProductByCategory(
             @ApiParam(value = "Time duration in months", required = true) @PathVariable int timeDuration,
@@ -65,7 +68,7 @@ public class ProductController {
         return (List<Product>) service.getAllProductByCategory(timeDuration, customerCategory, category);
     }
 
-    @RequestMapping("/soldbrandlist/{timeDuration}/{customerCategory}/{brand}")
+    @RequestMapping(method = RequestMethod.GET, value = "/soldbrandlist/{timeDuration}/{customerCategory}/{brand}")
     @ApiOperation(value = "Gets list of product brands", notes = "Generates list of brands with their average sales details")
     List<Product> getAllProductByBrand(
             @ApiParam(value = "Time duration in months", required = true) @PathVariable int timeDuration,

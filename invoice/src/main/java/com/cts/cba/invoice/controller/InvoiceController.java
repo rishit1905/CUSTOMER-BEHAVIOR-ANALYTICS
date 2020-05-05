@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
+@Api(tags = "Invoice", description = "A controller to activate endpoints related to properties of invoice entity")
 @RequestMapping("/edit")
 public class InvoiceController {
 
