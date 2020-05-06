@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 @RestController
 @Api(tags = "Invoice", description = "A controller to activate endpoints related to properties of invoice entity")
@@ -25,13 +26,13 @@ public class InvoiceController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/uploadinvoice")
     @ApiOperation(value = "Uploads invoices", notes = "Uploads invoices to database")
-    void invoiceUpload(@RequestBody Invoice invoice) {
+    void invoiceUpload(@ApiParam(value = "Entire invoice", required = true) @RequestBody Invoice invoice) {
         service.addInvoice(invoice);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/deleteinvoice/{invoiceId}")
     @ApiOperation(value = "Deletes invoices", notes = "Deletes invoices to database based on Invoice ID")
-    void invoiceDelete(@PathVariable int invoiceId) {
+    void invoiceDelete(@ApiParam(value = "Invoice ID to be deleted", required = true) @PathVariable int invoiceId) {
         service.deleteInvoice(invoiceId);
     }
 

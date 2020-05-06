@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import io.swagger.annotations.ApiModel;
@@ -46,17 +47,23 @@ public class Invoice {
 	@ApiModelProperty(notes = "List of Products Purchased")
 	private List<Product> product;
 
+	@ManyToOne
+	@JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
+	@ApiModelProperty(notes = "Customer Details")
+	private Customer customer;
+
 	public Invoice() {
 	}
 
 	public Invoice(int invoiceId, LocalDate invoiceDate, double tax, double totalPrice, String paymentMode,
-			List<Product> product) {
+			List<Product> product, Customer customer) {
 		this.invoiceId = invoiceId;
 		this.invoiceDate = invoiceDate;
 		this.tax = tax;
 		this.totalPrice = totalPrice;
 		this.paymentMode = paymentMode;
 		this.product = product;
+		this.customer = customer;
 	}
 
 	public int getInvoiceId() {
@@ -105,6 +112,14 @@ public class Invoice {
 
 	public void setProduct(List<Product> product) {
 		this.product = product;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 }

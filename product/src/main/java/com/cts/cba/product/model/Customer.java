@@ -1,7 +1,5 @@
 package com.cts.cba.product.model;
 
-import java.util.Set;
-
 public class Customer {
 
 	private int customerId;
@@ -9,18 +7,14 @@ public class Customer {
 	private String customerCategory;
 	private String location;
 
-	private Set<Invoice> invoice;
-
 	public Customer() {
 	}
 
-	public Customer(int customerId, String customerName, String customerCategory, String location,
-			Set<Invoice> invoice) {
+	public Customer(int customerId, String customerName, String customerCategory, String location) {
 		this.customerId = customerId;
 		this.customerName = customerName;
 		this.customerCategory = customerCategory;
 		this.location = location;
-		this.invoice = invoice;
 	}
 
 	public int getCustomerId() {
@@ -53,14 +47,6 @@ public class Customer {
 
 	public void setLocation(String location) {
 		this.location = location;
-	}
-
-	public Set<Invoice> getInvoice() {
-		return invoice;
-	}
-
-	public void setInvoice(Set<Invoice> invoice) {
-		this.invoice = invoice;
 	}
 
 }

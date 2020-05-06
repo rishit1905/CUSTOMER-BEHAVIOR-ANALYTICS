@@ -1,11 +1,8 @@
 package com.cts.cba.product.entity;
 
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import io.swagger.annotations.ApiModel;
@@ -32,20 +29,14 @@ public class Customer {
 	@ApiModelProperty(notes = "Customer Location")
 	private String location;
 
-	@OneToMany
-	@ApiModelProperty(notes = "List of invoices")
-	private Set<Invoice> invoice;
-
 	public Customer() {
 	}
 
-	public Customer(int customerId, String customerName, String customerCategory, String location,
-			Set<Invoice> invoice) {
+	public Customer(int customerId, String customerName, String customerCategory, String location) {
 		this.customerId = customerId;
 		this.customerName = customerName;
 		this.customerCategory = customerCategory;
 		this.location = location;
-		this.invoice = invoice;
 	}
 
 	public int getCustomerId() {
@@ -78,14 +69,6 @@ public class Customer {
 
 	public void setLocation(String location) {
 		this.location = location;
-	}
-
-	public Set<Invoice> getInvoice() {
-		return invoice;
-	}
-
-	public void setInvoice(Set<Invoice> invoice) {
-		this.invoice = invoice;
 	}
 
 }
