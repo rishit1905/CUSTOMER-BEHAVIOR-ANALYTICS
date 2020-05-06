@@ -5,9 +5,9 @@ create database cba;
 use cba;
 
 CREATE TABLE user (
-    u_id INT PRIMARY KEY,
-    u_name VARCHAR(15) NOT NULL UNIQUE,
-    pwd VARCHAR(20) NOT NULL,
+    user_id INT PRIMARY KEY,
+    user_name VARCHAR(15) NOT NULL UNIQUE,
+    password VARCHAR(20) NOT NULL,
     active boolean
 );
 
@@ -19,9 +19,9 @@ show tables;
 drop database cba;
 
 CREATE TABLE customer (
-    cid INT PRIMARY KEY,
-    cat VARCHAR(5) NOT NULL,
-    cname VARCHAR(300) NOT NULL,
+    customer_id INT PRIMARY KEY,
+    customer_category VARCHAR(5) NOT NULL,
+    customer_name VARCHAR(300) NOT NULL,
     location VARCHAR(50) NOT NULL
 );
 
@@ -45,11 +45,11 @@ select * from customer;
 drop table customer;
 
 CREATE TABLE product (
-    pid INT PRIMARY KEY,
-    pname VARCHAR(500) NOT NULL,
+    product_id INT PRIMARY KEY,
+    product_name VARCHAR(500) NOT NULL,
     category VARCHAR(100) NOT NULL,
     brand VARCHAR(500) NOT NULL,
-    descr VARCHAR(2000),
+    description VARCHAR(2000),
     price DOUBLE NOT NULL,
     stock INT NOT NULL
 );
@@ -89,12 +89,12 @@ select * from product;
 drop table invoice;
 
 CREATE TABLE invoice (
-    iid INT PRIMARY KEY,
-    idate DATETIME NOT NULL,
-    cid INT REFERENCES customer (cid),
+    invoice_id INT PRIMARY KEY,
+    invoice_date DATETIME NOT NULL,
+    customer_id INT REFERENCES customer (customer_id),
     tax DOUBLE NOT NULL,
-    tprice DOUBLE NOT NULL,
-    paymode VARCHAR(50) NOT NULL
+    total_price DOUBLE NOT NULL,
+    payment_mode VARCHAR(50) NOT NULL
 );
 
 INSERT INTO invoice VALUES(201,'2019-07-02 10:25:00',101,26.1415,548.9715,'Debitcard');
@@ -152,10 +152,10 @@ select * from invoice;
 drop table invoice_product;
 
 CREATE TABLE invoice_product (
-    iid INT NOT NULL REFERENCES invoice (iid),
-    pid INT NOT NULL REFERENCES product (pid),
-    PRIMARY KEY (iid , pid),
-    qty INT NOT NULL
+    invoice_id INT NOT NULL REFERENCES invoice (invoice_id),
+    product_id INT NOT NULL REFERENCES product (product_id),
+    PRIMARY KEY (invoice_id , product_id),
+    quantity INT NOT NULL
 );
 
 INSERT INTO invoice_product VALUES(201,1111,7);
@@ -222,10 +222,10 @@ INSERT INTO invoice_product VALUES(255,1140,7);
 select * from invoice_product;
 
 CREATE TABLE discount (
-    did INT PRIMARY KEY,
-    dname VARCHAR(50) NOT NULL,
-    descr VARCHAR(2000),
-    dprice DOUBLE NOT NULL
+    discount_id INT PRIMARY KEY,
+    discount_name VARCHAR(50) NOT NULL,
+    description VARCHAR(2000),
+    discount_price DOUBLE NOT NULL
 );
 
 INSERT INTO discount VALUES(1,'No Discount','Zero perc discount',0);
@@ -236,9 +236,9 @@ INSERT INTO discount VALUES(4,'Super 40perc','50 perc discount',0.50);
 select * from discount;
 
 CREATE TABLE product_discount (
-    pid INT NOT NULL REFERENCES product (pid),
-    did INT NOT NULL REFERENCES discount (did),
-    PRIMARY KEY (pid , did)
+    product_id INT NOT NULL REFERENCES product (product_id),
+    discount_id INT NOT NULL REFERENCES discount (discount_id),
+    PRIMARY KEY (product_id , discount_id)
 );
 
 
