@@ -4,6 +4,7 @@ import com.cts.cba.invoice.entity.Invoice;
 import com.cts.cba.invoice.service.InvoiceService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @Api(tags = "Invoice", description = "A controller to activate endpoints related to properties of invoice entity")
 @RequestMapping("/edit")
+@RefreshScope
 public class InvoiceController {
 
     @Autowired

@@ -6,6 +6,7 @@ import com.cts.cba.dashboard.entity.Product;
 import com.cts.cba.dashboard.service.CustomerService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,6 +19,7 @@ import io.swagger.annotations.ApiParam;
 @RestController
 @Api(tags = "Customer", description = "A controller to activate endpoint related to properties of customer entity")
 @RequestMapping("/customers")
+@RefreshScope
 public class CustomerController {
 
     @Autowired
