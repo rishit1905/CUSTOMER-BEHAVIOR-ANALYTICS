@@ -213,11 +213,6 @@ INSERT INTO invoice_product VALUES(247,1132,7);
 INSERT INTO invoice_product VALUES(248,1133,8);
 INSERT INTO invoice_product VALUES(249,1134,7);
 INSERT INTO invoice_product VALUES(250,1135,7);
-INSERT INTO invoice_product VALUES(251,1136,7);
-INSERT INTO invoice_product VALUES(252,1137,7);
-INSERT INTO invoice_product VALUES(253,1138,8);
-INSERT INTO invoice_product VALUES(254,1139,7);
-INSERT INTO invoice_product VALUES(255,1140,7);
 
 select * from invoice_product;
 
