@@ -29,9 +29,9 @@ public class DemoApplication {
 	}
 
 	public ApiInfo apiDetails() {
-		return new ApiInfo("Customer Behaviour Analytics",
-				"Enables analysing vivid customer purchase based on customer category. Generates a quantitative statistical report.",
-				"1.0", "Free To Use", new Contact("Rishabh Nag", "http://localhost:9090/", "Rishabh.Nag@cognizant.com"),
-				"API License", "http://localhost:9090/", Collections.emptyList());
+		return new ApiInfo("Product",
+				"Enables genenerating a quantitative statistical report of purchase pattern of products. Generally deals with list of products.",
+				"1.0", "Free To Use", new Contact("Rishabh Nag", "http://localhost:9191/product", "Rishabh.Nag@cognizant.com"),
+				"API License", "http://localhost:9191/product", Collections.emptyList());
 	}
 }
