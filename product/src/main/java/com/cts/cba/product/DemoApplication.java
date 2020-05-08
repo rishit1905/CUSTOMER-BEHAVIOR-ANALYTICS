@@ -2,6 +2,7 @@ package com.cts.cba.product;
 
 import java.util.Collections;
 
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -34,4 +35,5 @@ public class DemoApplication {
 				"1.0", "Free To Use", new Contact("Rishabh Nag", "http://localhost:9191/product", "Rishabh.Nag@cognizant.com"),
 				"API License", "http://localhost:9191/product", Collections.emptyList());
 	}
+
 }

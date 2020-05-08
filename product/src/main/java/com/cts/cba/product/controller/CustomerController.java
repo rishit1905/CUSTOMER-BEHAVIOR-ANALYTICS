@@ -3,11 +3,23 @@ package com.cts.cba.product.controller;
 import java.util.List;
 
 import com.cts.cba.product.entity.Product;
+// import com.cts.cba.product.model.AuthenticationRequest;
+// import com.cts.cba.product.model.AuthenticationResponse;
+// import com.cts.cba.product.security.JwtUtil;
 import com.cts.cba.product.service.CustomerService;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
+// import org.springframework.http.ResponseEntity;
+// import org.springframework.security.authentication.AuthenticationManager;
+// import org.springframework.security.authentication.BadCredentialsException;
+// import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+// import org.springframework.security.core.userdetails.UserDetails;
+// import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,8 +34,19 @@ import io.swagger.annotations.ApiParam;
 @RefreshScope
 public class CustomerController {
 
+    Logger logger = LoggerFactory.getLogger(CustomerController.class);
+
     @Autowired
-    CustomerService service;
+    private CustomerService service;
+
+    // @Autowired
+    // private UserDetailsService userDetailsService;
+
+    // @Autowired
+    // private JwtUtil jwtTokenUtil;
+
+    // @Autowired
+    // private AuthenticationManager authenticationManager;
 
     @RequestMapping(method = RequestMethod.GET, value = "/soldlocationlist/{timeDuration}/{customerCategory}/{location}")
     @ApiOperation(value = "Gets list of locations", notes = "Generates list of average sales details based on customer geoagraphy")
@@ -33,4 +56,20 @@ public class CustomerController {
             @ApiParam(value = "Location of customers", required = true) @PathVariable String location) {
         return service.getAllByLocation(timeDuration, customerCategory, location);
     }
+
+    // @RequestMapping(method = RequestMethod.POST, value = "/authenticate")
+    // public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest)
+    //         throws Exception {
+    //     try {
+    //         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+    //                 authenticationRequest.getUserName(), authenticationRequest.getPassword()));
+    //     } catch (BadCredentialsException exception) {
+    //         throw new Exception("Incorrect username or password !", exception);
+    //     }
+
+    //     final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUserName());
+
+    //     final String jwt = jwtTokenUtil.generateToken(userDetails);
+    //     return ResponseEntity.ok(new AuthenticationResponse(jwt));
+    // }
 }

@@ -1,5 +1,6 @@
 package com.cts.cba.product.entity;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -45,7 +46,7 @@ public class Product {
 	@Column(name = "stock", nullable = false)
 	@ApiModelProperty(notes = "Product Stock")
 	private int stock;
-
+	
 	@ManyToMany
 	@JoinTable(name = "product_discount", joinColumns = {
 			@JoinColumn(name = "product_id", referencedColumnName = "product_id", nullable = false) }, inverseJoinColumns = {
