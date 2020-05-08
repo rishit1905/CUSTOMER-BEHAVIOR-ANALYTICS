@@ -3,23 +3,13 @@ package com.cts.cba.product.controller;
 import java.util.List;
 
 import com.cts.cba.product.entity.Product;
-// import com.cts.cba.product.model.AuthenticationRequest;
-// import com.cts.cba.product.model.AuthenticationResponse;
-// import com.cts.cba.product.security.JwtUtil;
 import com.cts.cba.product.service.CustomerService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-// import org.springframework.http.ResponseEntity;
-// import org.springframework.security.authentication.AuthenticationManager;
-// import org.springframework.security.authentication.BadCredentialsException;
-// import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-// import org.springframework.security.core.userdetails.UserDetails;
-// import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,7 +30,7 @@ public class CustomerController {
     private CustomerService service;
 
     // @Autowired
-    // private UserDetailsService userDetailsService;
+    // private UserSecurityService userSecurityService;
 
     // @Autowired
     // private JwtUtil jwtTokenUtil;
@@ -54,22 +44,34 @@ public class CustomerController {
             @ApiParam(value = "Time duration in months", required = true) @PathVariable int timeDuration,
             @ApiParam(value = "Category of customers", required = true) @PathVariable String customerCategory,
             @ApiParam(value = "Location of customers", required = true) @PathVariable String location) {
-        return service.getAllByLocation(timeDuration, customerCategory, location);
+
+        logger.debug("Resquest: {} | {} | {}", timeDuration, customerCategory, location);
+        List<Product> list = service.getAllByLocation(timeDuration, customerCategory, location);
+        if (list.isEmpty()) {
+            throw new RuntimeException("Failed Execution !");
+        } else {
+            logger.info("Response: Successfully Executed");
+        }
+
+        return list;
+
     }
 
     // @RequestMapping(method = RequestMethod.POST, value = "/authenticate")
-    // public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest)
-    //         throws Exception {
-    //     try {
-    //         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-    //                 authenticationRequest.getUserName(), authenticationRequest.getPassword()));
-    //     } catch (BadCredentialsException exception) {
-    //         throw new Exception("Incorrect username or password !", exception);
-    //     }
+    // public ResponseEntity<?> createAuthenticationToken(@RequestBody
+    // AuthenticationRequest authenticationRequest)
+    // throws Exception {
+    // try {
+    // authenticationManager.authenticate(new
+    // UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(),authenticationRequest.getPassword()));
+    // } catch (BadCredentialsException exception) {
+    // throw new Exception("Incorrect username or password !", exception);
+    // }
 
-    //     final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUserName());
+    // final UserDetails userDetails =
+    // userSecurityService.loadUserByUsername(authenticationRequest.getUsername());
 
-    //     final String jwt = jwtTokenUtil.generateToken(userDetails);
-    //     return ResponseEntity.ok(new AuthenticationResponse(jwt));
+    // final String jwt = jwtTokenUtil.generateToken(userDetails);
+    // return ResponseEntity.ok(new AuthenticationResponse(jwt));
     // }
 }

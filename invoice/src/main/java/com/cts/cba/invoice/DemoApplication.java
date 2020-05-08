@@ -32,4 +32,5 @@ public class DemoApplication {
 				new Contact("Rishabh Nag", "http://localhost:9191/invoice", "Rishabh.Nag@cognizant.com"), "API License",
 				"http://localhost:9191/invoice", Collections.emptyList());
 	}
+
 }

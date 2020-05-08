@@ -13,7 +13,7 @@ public class UserSecurityService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return new User("admin1", "abcd", new ArrayList<>());
+        return new User("admin", "abcd1", new ArrayList<>());
     }
     
     

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class UserSecurityService implements UserDetailsService {
 
     @Override
-    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return new User("user1", "abcd123", new ArrayList<>());
     }
 
