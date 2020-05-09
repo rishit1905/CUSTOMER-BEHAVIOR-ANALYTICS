@@ -14,10 +14,11 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class DefaultExceptionHandler extends ResponseEntityExceptionHandler {
     
-    Logger logger = LoggerFactory.getLogger(DefaultExceptionHandler.class);
+    Logger log = LoggerFactory.getLogger(DefaultExceptionHandler.class);
     
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorMessage> handleException(Exception exception){
+        log.error("Response: {}", exception.getMessage());
         ErrorMessage response=new ErrorMessage(exception.getMessage(), "Kindly check the path variables or end points !");
         
         return new ResponseEntity<ErrorMessage>(response,new HttpHeaders(), HttpStatus.METHOD_FAILURE);

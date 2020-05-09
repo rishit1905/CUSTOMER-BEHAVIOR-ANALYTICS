@@ -36,16 +36,16 @@ public class ProductController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/soldproductlist/{timeDuration}/{customerCategory}")
     @ApiOperation(value = "Gets list of discounted/non-discounted products", notes = "Generates list of discounted sales based on time interval, customer category")
-    List<Product> getProductSold(
+    public List<Product> getProductSold(
             @ApiParam(value = "Time duration in months", required = true) @PathVariable int timeDuration,
             @ApiParam(value = "Category of customers", required = true) @PathVariable String customerCategory) {
 
         logger.debug("Resquest: {} | {}", timeDuration, customerCategory);
         List<Product> list = service.getProductSold(timeDuration, customerCategory);
         if (list.isEmpty()) {
-            throw new RuntimeException("Failed Execution !");
+            throw new RuntimeException("Failed Execution..!");
         } else {
-            logger.info("Response: Successfully Executed");
+            logger.info("Response: Successfully Executed..");
         }
 
         return list;
@@ -58,7 +58,7 @@ public class ProductController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/soldproductlist/priceRange/{timeDuration}/{customerCategory}/{startPrice}/{endPrice}")
     @ApiOperation(value = "Gets list of products", notes = "Generates list of products and their sales details based on time interval, customer category, range of product price")
-    List<Product> getAllProductByPriceRange(
+    public List<Product> getAllProductByPriceRange(
             @ApiParam(value = "Time duration in months", required = true) @PathVariable int timeDuration,
             @ApiParam(value = "Category of customers", required = true) @PathVariable String customerCategory,
             @ApiParam(value = "Starting price of product", required = true) @PathVariable double startPrice,
@@ -67,9 +67,9 @@ public class ProductController {
         logger.debug("Resquest: {} | {} | {} | {}", timeDuration, customerCategory, startPrice, endPrice);
         List<Product> list = service.getAllProductByPriceRange(timeDuration, customerCategory, startPrice, endPrice);
         if (list.isEmpty()) {
-            throw new RuntimeException("Failed Execution !");
+            throw new RuntimeException("Failed Execution!");
         } else {
-            logger.info("Response: Successfully Executed");
+            logger.info("Response: Successfully Executed!");
         }
 
         return list;
@@ -77,16 +77,16 @@ public class ProductController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/solddiscountlist/{timeDuration}/{customerCategory}")
     @ApiOperation(value = "Gets list of products", notes = "Generates list of products and their sales details based on time interval, customer category")
-    List<Product> getAllProductByDiscount(
+    public List<Product> getAllProductByDiscount(
             @ApiParam(value = "Time duration in months", required = true) @PathVariable int timeDuration,
             @ApiParam(value = "Category of customers", required = true) @PathVariable String customerCategory) {
 
         logger.debug("Resquest: {} | {}", timeDuration, customerCategory);
         List<Product> list = service.getAllProductByDiscount(timeDuration, customerCategory);
         if (list.isEmpty()) {
-            throw new RuntimeException("Failed Execution !");
+            throw new RuntimeException("Failed Execution..");
         } else {
-            logger.info("Response: Successfully Executed");
+            logger.info("Response: Successfully Executed...");
         }
 
         return list;
@@ -94,7 +94,7 @@ public class ProductController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/soldcategorylist/{timeDuration}/{customerCategory}/{category}")
     @ApiOperation(value = "Gets list of product categories", notes = "Generates list of categories of products with their average sales details")
-    List<Product> getAllProductByCategory(
+    public List<Product> getAllProductByCategory(
             @ApiParam(value = "Time duration in months", required = true) @PathVariable int timeDuration,
             @ApiParam(value = "Category of customers", required = true) @PathVariable String customerCategory,
             @ApiParam(value = "Product category", required = true) @PathVariable String category) {
@@ -112,7 +112,7 @@ public class ProductController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/soldbrandlist/{timeDuration}/{customerCategory}/{brand}")
     @ApiOperation(value = "Gets list of product brands", notes = "Generates list of brands with their average sales details")
-    List<Product> getAllProductByBrand(
+    public List<Product> getAllProductByBrand(
             @ApiParam(value = "Time duration in months", required = true) @PathVariable int timeDuration,
             @ApiParam(value = "Category of customers", required = true) @PathVariable String customerCategory,
             @ApiParam(value = "Product brand", required = true) @PathVariable String brand) {

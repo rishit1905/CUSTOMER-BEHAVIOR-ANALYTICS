@@ -33,7 +33,7 @@ public class InvoiceController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/uploadinvoice")
     @ApiOperation(value = "Uploads invoices", notes = "Uploads invoices to database")
-    void invoiceUpload(@ApiParam(value = "Entire invoice", required = true) @RequestBody Invoice invoice) {
+    public void invoiceUpload(@ApiParam(value = "Entire invoice", required = true) @RequestBody Invoice invoice) {
 
         logger.debug("Resquest: Invoice");
         if (invoice.equals(null)) {
@@ -47,7 +47,7 @@ public class InvoiceController {
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/deleteinvoice/{invoiceId}")
     @ApiOperation(value = "Deletes invoices", notes = "Deletes invoices to database based on Invoice ID")
-    void invoiceDelete(@ApiParam(value = "Invoice ID to be deleted", required = true) @PathVariable int invoiceId) {
+    public void invoiceDelete(@ApiParam(value = "Invoice ID to be deleted", required = true) @PathVariable int invoiceId) {
         
         logger.debug("Resquest: Delete {}", invoiceId);
         Map<Integer, Invoice> map=new HashMap<>();

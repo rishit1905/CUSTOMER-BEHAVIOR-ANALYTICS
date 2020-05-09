@@ -40,7 +40,7 @@ public class CustomerController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/soldlocationlist/{timeDuration}/{customerCategory}/{location}")
     @ApiOperation(value = "Gets list of locations", notes = "Generates list of average sales details based on customer geoagraphy")
-    List<Product> getAllByLocation(
+    public List<Product> getAllByLocation(
             @ApiParam(value = "Time duration in months", required = true) @PathVariable int timeDuration,
             @ApiParam(value = "Category of customers", required = true) @PathVariable String customerCategory,
             @ApiParam(value = "Location of customers", required = true) @PathVariable String location) {
