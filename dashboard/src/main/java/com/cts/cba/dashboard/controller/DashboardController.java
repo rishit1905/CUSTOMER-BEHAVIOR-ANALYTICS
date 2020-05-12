@@ -22,7 +22,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
 @RestController
-@RequestMapping("/dashboard")
+@RequestMapping("/dashb")
 public class DashboardController {
 
     @Autowired
