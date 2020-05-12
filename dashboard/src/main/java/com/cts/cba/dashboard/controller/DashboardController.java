@@ -7,6 +7,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -18,11 +19,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
 @RestController
+@Api(tags = "Dashboard", description = "A controller to consume product services endpoints")
 @RequestMapping("/dashb")
+@RefreshScope
 public class DashboardController {
 
     @Autowired
@@ -34,6 +38,7 @@ public class DashboardController {
     public String baseUrl1 = "http://localhost:8083/products";
 
     @RequestMapping(method = RequestMethod.GET, value = "/locationsales/{timeDuration}/{customerCategory}/{location}")
+    @ApiOperation(value = "Consumes list of locations endpoint", notes = "Consumes endpoint generating list of location based product sales")
     public List<Object> getAllByLocation(
             @ApiParam(value = "Time duration in months", required = true) @PathVariable int timeDuration,
             @ApiParam(value = "Category of customers", required = true) @PathVariable String customerCategory,
@@ -53,7 +58,7 @@ public class DashboardController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/productsales/{timeDuration}/{customerCategory}")
-    @ApiOperation(value = "Gets list of products", notes = "Generates list of products and their sales details based on time interval, customer category")
+    @ApiOperation(value = "Consumes list of products endpoint", notes = "Consumes endpoint generating list of products and their sales details based on time interval, customer category")
     public List<Object> getProductSold(
             @ApiParam(value = "Time duration in months", required = true) @PathVariable int timeDuration,
             @ApiParam(value = "Category of customers", required = true) @PathVariable String customerCategory) {
@@ -72,7 +77,7 @@ public class DashboardController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/productsales/{timeDuration}/{customerCategory}/{startPrice}/{endPrice}")
-    @ApiOperation(value = "Gets list of products", notes = "Generates list of products and their sales details based on time interval, customer category, range of product price")
+    @ApiOperation(value = "Consumes price-range based list of products endpoint", notes = "Consumes endpoint generating list of products and their sales details based on time interval, customer category, range of product price")
     public List<Object> getAllProductByPriceRange(
             @ApiParam(value = "Time duration in months", required = true) @PathVariable int timeDuration,
             @ApiParam(value = "Category of customers", required = true) @PathVariable String customerCategory,
