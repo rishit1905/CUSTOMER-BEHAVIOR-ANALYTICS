@@ -1,11 +1,5 @@
-create database cba_;
-use cba_;
-
 create database cba;
 use cba;
-
-
-drop table user;
 show tables;
 drop database cba;
 
