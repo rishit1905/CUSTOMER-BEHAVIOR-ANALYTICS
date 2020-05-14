@@ -1,31 +1,65 @@
-// package com.cts.cba.invoice;
+package com.cts.cba.invoice;
 
-// import com.cts.cba.invoice.entity.Invoice;
-// import com.cts.cba.invoice.entity.Product;
-// import com.cts.cba.invoice.model.Customer;
-// import com.cts.cba.invoice.repository.InvoiceRepo;
-// import com.cts.cba.invoice.service.InvoiceService;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-// import org.junit.runner.RunWith;
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.boot.test.context.SpringBootTest;
-// import org.springframework.boot.test.mock.mockito.MockBean;
-// import org.springframework.test.context.junit4.SpringRunner;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-// @SpringBootTest
-// @RunWith(SpringRunner.class)
-// public class InvoiceServiceTests {
+import com.cts.cba.invoice.entity.Customer;
+import com.cts.cba.invoice.entity.Discount;
+import com.cts.cba.invoice.entity.Invoice;
+import com.cts.cba.invoice.entity.Product;
+import com.cts.cba.invoice.model.InvoiceResponse;
+import com.cts.cba.invoice.repository.InvoiceRepo;
+import com.cts.cba.invoice.service.InvoiceService;
+import com.google.common.collect.Lists;
 
-//     @Autowired
-//     private InvoiceService service;
+import org.assertj.core.util.Arrays;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.internal.util.collections.Sets;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit4.SpringRunner;
 
-//     @MockBean
-//     private InvoiceRepo repo;
+@SpringBootTest
+@RunWith(SpringRunner.class)
+public class InvoiceServiceTests {
 
-//     public void invoiceUploadTests() {
-        
-//         Invoice invoice = new Invoice(251, "2020-01-02 10:25:00", 26.1415, 548.9715, "Debitcard",
-//                 new Product(productId, productName, category, brand, description, price, stock, discount),
-//                 new Customer(customerId, customerName, customerCategory, location));
-//     }
-// }
+    @Autowired
+    private InvoiceService service;
+
+    @MockBean
+    private InvoiceRepo repo;
+
+    @Test
+    public void invoiceUploadTest() {
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        Invoice invoice = new Invoice(251, currentDateTime, 26.1415, 548.9715, "Debitcard",
+                Stream.of(new Product(11, "Watch", "Accessories", "Titan", "Average", 73.56, 10,
+                        Sets.newSet(new Discount(1, "No Discount", "Zero perc discount", 0))))
+                        .collect(Collectors.toList()),
+                new Customer(107, "cat3", "Raghu", "Mysore"));
+        service.addInvoice(invoice);
+        verify(repo,times(1)).save(invoice);
+    }
+
+    @Test
+    public void invoiceDeleteTest() {
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        Invoice invoice = new Invoice(251, currentDateTime, 26.1415, 548.9715, "Debitcard",
+                Stream.of(new Product(11, "Watch", "Accessories", "Titan", "Average", 73.56, 10,
+                        Sets.newSet(new Discount(1, "No Discount", "Zero perc discount", 0))))
+                        .collect(Collectors.toList()),
+                new Customer(107, "cat3", "Raghu", "Mysore"));
+        service.deleteInvoice(invoice.getInvoiceId());
+        verify(repo,times(1)).deleteById(invoice.getInvoiceId());
+    }
+}

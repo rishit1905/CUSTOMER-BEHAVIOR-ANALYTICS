@@ -3,9 +3,12 @@ package com.cts.cba.invoice.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.cts.cba.invoice.entity.Invoice;
+import com.cts.cba.invoice.model.DeleteResponse;
+import com.cts.cba.invoice.model.InvoiceResponse;
 import com.cts.cba.invoice.service.InvoiceService;
 
 import org.slf4j.Logger;
@@ -35,21 +38,22 @@ public class InvoiceController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/uploadinvoice")
     @ApiOperation(value = "Uploads invoices", notes = "Uploads invoices to database")
-    public void invoiceUpload(@ApiParam(value = "Entire invoice", required = true) @RequestBody Invoice invoice) {
+    public InvoiceResponse invoiceUpload(
+            @ApiParam(value = "Entire invoice", required = true) @RequestBody Invoice invoice) {
 
         logger.info("Resquest: Invoice");
-        if (invoice.equals(null)) {
-            throw new RuntimeException("Upload Failed !");
+        if (invoice == null || !(service.findById(invoice.getInvoiceId()).isEmpty())) {
+            throw new RuntimeException("Upload Failed ! Data missing or already in database!");
         } else {
             logger.info("Response: Successfully Uploaded");
+            return service.addInvoice(invoice);
         }
 
-        service.addInvoice(invoice);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/deleteinvoice/{invoiceId}")
     @ApiOperation(value = "Deletes invoices", notes = "Deletes invoices to database based on Invoice ID")
-    public void invoiceDelete(
+    public DeleteResponse invoiceDelete(
             @ApiParam(value = "Invoice ID to be deleted", required = true) @PathVariable int invoiceId) {
 
         List<Invoice> inv = service.getAll();
@@ -60,8 +64,9 @@ public class InvoiceController {
             throw new RuntimeException("Delete Failed !");
         } else {
             logger.info("Response: Successfully Deleted");
+            return service.deleteInvoice(invoiceId);
         }
-        service.deleteInvoice(invoiceId);
+
     }
 
 }
