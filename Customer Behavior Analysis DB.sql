@@ -10,16 +10,16 @@ CREATE TABLE customer (
     location VARCHAR(50) NOT NULL
 );
 
-INSERT INTO customer VALUES(101,'cat1','Harsha','Banglore');
+INSERT INTO customer VALUES(101,'cat1','Harsha','Bangalore');
 INSERT INTO customer VALUES(102,'cat2','Shwetha','Mysore');
 INSERT INTO customer VALUES(103,'cat3','Sangamesh','Chennai');
 INSERT INTO customer VALUES(104,'cat4','Swathi','Pune');
-INSERT INTO customer VALUES(105,'cat1','Manasa','Banglore');
-INSERT INTO customer VALUES(106,'cat2','Sampritha','Banglore');
+INSERT INTO customer VALUES(105,'cat1','Manasa','Bangalore');
+INSERT INTO customer VALUES(106,'cat2','Sampritha','Bangalore');
 INSERT INTO customer VALUES(107,'cat3','Raghu','Mysore');
 INSERT INTO customer VALUES(108,'cat4','Reshma','Pune');
 INSERT INTO customer VALUES(109,'cat1','Adya','Chennai');
-INSERT INTO customer VALUES(110,'cat2','Adarsh','Banglore');
+INSERT INTO customer VALUES(110,'cat2','Adarsh','Bangalore');
 INSERT INTO customer VALUES(111,'cat3','Chaithra','Mysore');
 INSERT INTO customer VALUES(112,'cat4','Induja','Mysore');
 INSERT INTO customer VALUES(113,'cat1','Srikanth','Chennai');
@@ -75,7 +75,7 @@ drop table invoice;
 
 CREATE TABLE invoice (
     invoice_id INT PRIMARY KEY,
-    invoice_date DATETIME NOT NULL,
+    invoice_date VARCHAR(20) NOT NULL,
     customer_id INT REFERENCES customer (customer_id),
     tax DOUBLE NOT NULL,
     total_price DOUBLE NOT NULL,
@@ -132,74 +132,124 @@ INSERT INTO invoice VALUES(247,'2019-03-01 13:22:00',115,16.2155,340.5255,'Cash'
 INSERT INTO invoice VALUES(248,'2019-01-28 20:35:00',101,23.288,489.048,'Creditcard');
 INSERT INTO invoice VALUES(249,'2019-02-09 10:37:00',101,30.2085,634.3785,'Debitcard');
 INSERT INTO invoice VALUES(250,'2019-03-26 18:30:00',107,29.8865,627.6165,'Cash');
+INSERT INTO invoice VALUES(251,'2019-03-26 18:30:00',107,29.8865,12,'Cash');
 
 select * from invoice;
+update invoice inner join invoice_product on invoice.invoice_id=invoice_product.invoice_id set invoice.total_price=((invoice.tax/100)*invoice_product.gross)+invoice_product.gross;
+
 drop table invoice_product;
 
 CREATE TABLE invoice_product (
     invoice_id INT NOT NULL REFERENCES invoice (invoice_id),
-    product_id INT NOT NULL REFERENCES product (product_id),
-    PRIMARY KEY (invoice_id , product_id),
-    quantity INT NOT NULL
+    product_id INT NOT NULL REFERENCES product (product_id)
 );
 
-INSERT INTO invoice_product VALUES(201,1111,7);
-INSERT INTO invoice_product VALUES(202,1112,7);
-INSERT INTO invoice_product VALUES(203,1113,8);
-INSERT INTO invoice_product VALUES(204,1114,7);
-INSERT INTO invoice_product VALUES(205,1115,7);
-INSERT INTO invoice_product VALUES(206,1116,6);
-INSERT INTO invoice_product VALUES(207,1117,10);
-INSERT INTO invoice_product VALUES(208,1118,2);
-INSERT INTO invoice_product VALUES(209,1119,3);
-INSERT INTO invoice_product VALUES(210,1120,4);
-INSERT INTO invoice_product VALUES(211,1121,5);
-INSERT INTO invoice_product VALUES(212,1122,10);
-INSERT INTO invoice_product VALUES(213,1123,10);
-INSERT INTO invoice_product VALUES(214,1124,6);
-INSERT INTO invoice_product VALUES(215,1125,7);
-INSERT INTO invoice_product VALUES(216,1111,7);
-INSERT INTO invoice_product VALUES(217,1112,7);
-INSERT INTO invoice_product VALUES(218,1113,8);
-INSERT INTO invoice_product VALUES(219,1114,7);
-INSERT INTO invoice_product VALUES(220,1115,7);
-INSERT INTO invoice_product VALUES(221,1116,6);
-INSERT INTO invoice_product VALUES(222,1117,10);
-INSERT INTO invoice_product VALUES(223,1118,2);
-INSERT INTO invoice_product VALUES(224,1119,3);
-INSERT INTO invoice_product VALUES(225,1120,4);
-INSERT INTO invoice_product VALUES(226,1121,5);
-INSERT INTO invoice_product VALUES(227,1122,10);
-INSERT INTO invoice_product VALUES(228,1123,10);
-INSERT INTO invoice_product VALUES(229,1124,6);
-INSERT INTO invoice_product VALUES(230,1125,7);
-INSERT INTO invoice_product VALUES(231,1111,7);
-INSERT INTO invoice_product VALUES(232,1112,7);
-INSERT INTO invoice_product VALUES(233,1113,8);
-INSERT INTO invoice_product VALUES(234,1114,7);
-INSERT INTO invoice_product VALUES(235,1115,7);
-INSERT INTO invoice_product VALUES(236,1116,6);
-INSERT INTO invoice_product VALUES(237,1117,10);
-INSERT INTO invoice_product VALUES(238,1118,2);
-INSERT INTO invoice_product VALUES(239,1119,3);
-INSERT INTO invoice_product VALUES(240,1120,4);
-INSERT INTO invoice_product VALUES(241,1121,5);
-INSERT INTO invoice_product VALUES(242,1122,10);
-INSERT INTO invoice_product VALUES(243,1123,10);
-INSERT INTO invoice_product VALUES(244,1124,6);
-INSERT INTO invoice_product VALUES(245,1125,7);
-INSERT INTO invoice_product VALUES(246,1126,7);
-INSERT INTO invoice_product VALUES(247,1127,7);
-INSERT INTO invoice_product VALUES(248,1128,8);
-INSERT INTO invoice_product VALUES(249,1129,7);
-INSERT INTO invoice_product VALUES(250,1130,7);
-INSERT INTO invoice_product VALUES(251,1131,7);
-INSERT INTO invoice_product VALUES(247,1132,7);
-INSERT INTO invoice_product VALUES(248,1133,8);
-INSERT INTO invoice_product VALUES(249,1134,7);
-INSERT INTO invoice_product VALUES(250,1135,7);
+INSERT INTO invoice_product VALUES(201,1111);
+INSERT INTO invoice_product VALUES(201,1111);
+INSERT INTO invoice_product VALUES(201,1111);
+INSERT INTO invoice_product VALUES(201,1111);
+INSERT INTO invoice_product VALUES(201,1111);
+INSERT INTO invoice_product VALUES(202,1112);
+INSERT INTO invoice_product VALUES(202,1112);
+INSERT INTO invoice_product VALUES(202,1112);
+INSERT INTO invoice_product VALUES(202,1112);
+INSERT INTO invoice_product VALUES(203,1113);
+INSERT INTO invoice_product VALUES(203,1113);
+INSERT INTO invoice_product VALUES(203,1113);
+INSERT INTO invoice_product VALUES(204,1114);
+INSERT INTO invoice_product VALUES(204,1114);
+INSERT INTO invoice_product VALUES(205,1115);
+INSERT INTO invoice_product VALUES(205,1115);
+INSERT INTO invoice_product VALUES(205,1115);
+INSERT INTO invoice_product VALUES(206,1116);
+INSERT INTO invoice_product VALUES(206,1116);
+INSERT INTO invoice_product VALUES(206,1116);
+INSERT INTO invoice_product VALUES(206,1116);
+INSERT INTO invoice_product VALUES(206,1116);
+INSERT INTO invoice_product VALUES(206,1116);
+INSERT INTO invoice_product VALUES(207,1117);
+INSERT INTO invoice_product VALUES(207,1117);
+INSERT INTO invoice_product VALUES(207,1117);
+INSERT INTO invoice_product VALUES(208,1118);
+INSERT INTO invoice_product VALUES(208,1118);
+INSERT INTO invoice_product VALUES(208,1118);
+INSERT INTO invoice_product VALUES(209,1119);
+INSERT INTO invoice_product VALUES(209,1119);
+INSERT INTO invoice_product VALUES(209,1119);
+INSERT INTO invoice_product VALUES(210,1120);
+INSERT INTO invoice_product VALUES(211,1121);
+INSERT INTO invoice_product VALUES(211,1121);
+INSERT INTO invoice_product VALUES(211,1121);
+INSERT INTO invoice_product VALUES(211,1121);
+INSERT INTO invoice_product VALUES(211,1121);
+INSERT INTO invoice_product VALUES(211,1121);
+INSERT INTO invoice_product VALUES(212,1122);
+INSERT INTO invoice_product VALUES(212,1122);
+INSERT INTO invoice_product VALUES(212,1122);
+INSERT INTO invoice_product VALUES(212,1122);
+INSERT INTO invoice_product VALUES(212,1122);
+INSERT INTO invoice_product VALUES(212,1122);
+INSERT INTO invoice_product VALUES(213,1123);
+INSERT INTO invoice_product VALUES(213,1123);
+INSERT INTO invoice_product VALUES(213,1123);
+INSERT INTO invoice_product VALUES(213,1123);
+INSERT INTO invoice_product VALUES(214,1124);
+INSERT INTO invoice_product VALUES(214,1124);
+INSERT INTO invoice_product VALUES(214,1124);
+INSERT INTO invoice_product VALUES(214,1124);
+INSERT INTO invoice_product VALUES(215,1125);
+INSERT INTO invoice_product VALUES(215,1125);
+INSERT INTO invoice_product VALUES(215,1125);
+INSERT INTO invoice_product VALUES(215,1125);
+INSERT INTO invoice_product VALUES(215,1125);
+INSERT INTO invoice_product VALUES(215,1125);
+INSERT INTO invoice_product VALUES(216,1111);
+INSERT INTO invoice_product VALUES(216,1111);
+INSERT INTO invoice_product VALUES(216,1111);
+INSERT INTO invoice_product VALUES(216,1111);
+INSERT INTO invoice_product VALUES(217,1112);
+INSERT INTO invoice_product VALUES(218,1113);
+INSERT INTO invoice_product VALUES(219,1114);
+INSERT INTO invoice_product VALUES(220,1115);
+INSERT INTO invoice_product VALUES(221,1116);
+INSERT INTO invoice_product VALUES(222,1117);
+INSERT INTO invoice_product VALUES(223,1118);
+INSERT INTO invoice_product VALUES(224,1119);
+INSERT INTO invoice_product VALUES(225,1120);
+INSERT INTO invoice_product VALUES(226,1121);
+INSERT INTO invoice_product VALUES(227,1122);
+INSERT INTO invoice_product VALUES(228,1123);
+INSERT INTO invoice_product VALUES(229,1124);
+INSERT INTO invoice_product VALUES(230,1125);
+INSERT INTO invoice_product VALUES(231,1111);
+INSERT INTO invoice_product VALUES(232,1112);
+INSERT INTO invoice_product VALUES(233,1113);
+INSERT INTO invoice_product VALUES(234,1114);
+INSERT INTO invoice_product VALUES(235,1115);
+INSERT INTO invoice_product VALUES(236,1116);
+INSERT INTO invoice_product VALUES(237,1117);
+INSERT INTO invoice_product VALUES(238,1118);
+INSERT INTO invoice_product VALUES(239,1119);
+INSERT INTO invoice_product VALUES(240,1120);
+INSERT INTO invoice_product VALUES(241,1121);
+INSERT INTO invoice_product VALUES(242,1122);
+INSERT INTO invoice_product VALUES(243,1123);
+INSERT INTO invoice_product VALUES(244,1124);
+INSERT INTO invoice_product VALUES(245,1125);
+INSERT INTO invoice_product VALUES(246,1126);
+INSERT INTO invoice_product VALUES(247,1127);
+INSERT INTO invoice_product VALUES(248,1128);
+INSERT INTO invoice_product VALUES(249,1129);
+INSERT INTO invoice_product VALUES(250,1130);
+INSERT INTO invoice_product VALUES(251,1131);
+INSERT INTO invoice_product VALUES(247,1132);
+INSERT INTO invoice_product VALUES(248,1133);
+INSERT INTO invoice_product VALUES(249,1134);
+INSERT INTO invoice_product VALUES(250,1135);
 
 select * from invoice_product;
+alter table invoice_product add column gross double not null;
+update invoice_product inner join product on invoice_product.product_id=product.product_id set invoice_product.gross=product.price*invoice_product.quantity;
 
 CREATE TABLE discount (
     discount_id INT PRIMARY KEY,

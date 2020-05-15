@@ -6,6 +6,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -42,7 +43,8 @@ public class InvoiceServiceTests {
     @Test
     public void invoiceUploadTest() {
         LocalDateTime currentDateTime = LocalDateTime.now();
-        Invoice invoice = new Invoice(251, currentDateTime, 26.1415, 548.9715, "Debitcard",
+        DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        Invoice invoice = new Invoice(251, formatter.format(currentDateTime), 26.1415, 548.9715, "Debitcard",
                 Stream.of(new Product(11, "Watch", "Accessories", "Titan", "Average", 73.56, 10,
                         Sets.newSet(new Discount(1, "No Discount", "Zero perc discount", 0))))
                         .collect(Collectors.toList()),
@@ -54,7 +56,8 @@ public class InvoiceServiceTests {
     @Test
     public void invoiceDeleteTest() {
         LocalDateTime currentDateTime = LocalDateTime.now();
-        Invoice invoice = new Invoice(251, currentDateTime, 26.1415, 548.9715, "Debitcard",
+        DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        Invoice invoice = new Invoice(251, formatter.format(currentDateTime), 26.1415, 548.9715, "Debitcard",
                 Stream.of(new Product(11, "Watch", "Accessories", "Titan", "Average", 73.56, 10,
                         Sets.newSet(new Discount(1, "No Discount", "Zero perc discount", 0))))
                         .collect(Collectors.toList()),
