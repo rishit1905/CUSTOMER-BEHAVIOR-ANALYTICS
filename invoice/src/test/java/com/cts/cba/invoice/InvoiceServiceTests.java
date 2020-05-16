@@ -44,13 +44,13 @@ public class InvoiceServiceTests {
     public void invoiceUploadTest() {
         LocalDateTime currentDateTime = LocalDateTime.now();
         DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        Invoice invoice = new Invoice(251, formatter.format(currentDateTime), 26.1415, 548.9715, "Debitcard",
+        Invoice invoice = new Invoice(257, formatter.format(currentDateTime), 26.1415, 548.9715, "Debitcard",
                 Stream.of(new Product(11, "Watch", "Accessories", "Titan", "Average", 73.56, 10,
                         Sets.newSet(new Discount(1, "No Discount", "Zero perc discount", 0))))
                         .collect(Collectors.toList()),
                 new Customer(107, "cat3", "Raghu", "Mysore"));
-        service.addInvoice(invoice);
-        verify(repo,times(1)).save(invoice);
+        when(repo.save(invoice)).thenReturn(invoice);
+        assertEquals(invoice, repo.save(invoice));
     }
 
     @Test
