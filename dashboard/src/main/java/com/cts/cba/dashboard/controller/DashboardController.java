@@ -195,44 +195,32 @@ public class DashboardController {
         return Arrays.asList(responseEntity.getBody());
     }
 
-    public List<Object> getFallbackAllByLocation(
-            @ApiParam(value = "Time duration in months", required = true) @PathVariable int timeDuration,
-            @ApiParam(value = "Category of customers", required = true) @PathVariable String customerCategory,
-            @ApiParam(value = "Location of customers", required = true) @PathVariable String location) {
+    public List<Object> getFallbackAllByLocation(@PathVariable int timeDuration, @PathVariable String customerCategory,
+            @PathVariable String location) {
         return Arrays.asList(new Product(0, "No Product Found", "", "", "", 0, 0, new HashSet<Discount>()));
     }
 
-    public List<Object> getFallbackProductSold(
-            @ApiParam(value = "Time duration in months", required = true) @PathVariable int timeDuration,
-            @ApiParam(value = "Category of customers", required = true) @PathVariable String customerCategory) {
+    public List<Object> getFallbackProductSold(@PathVariable int timeDuration, @PathVariable String customerCategory) {
         return Arrays.asList(new Product(00, "No Products", "", "", "", 0, 0, new HashSet<Discount>()));
     }
 
-    public List<Object> getFallbackAllProductByPriceRange(
-            @ApiParam(value = "Time duration in months", required = true) @PathVariable int timeDuration,
-            @ApiParam(value = "Category of customers", required = true) @PathVariable String customerCategory,
-            @ApiParam(value = "Starting price of product", required = true) @PathVariable double startPrice,
-            @ApiParam(value = "Ending price of product", required = true) @PathVariable double endPrice) {
+    public List<Object> getFallbackAllProductByPriceRange(@PathVariable int timeDuration,
+            @PathVariable String customerCategory, @PathVariable double startPrice, @PathVariable double endPrice) {
         return Arrays.asList(new Product(000, "No Such Product", "", "", "", 0, 0, new HashSet<Discount>()));
     }
 
-    public List<Object> getFallbackAllProductByDiscount(
-            @ApiParam(value = "Time duration in months", required = true) @PathVariable int timeDuration,
-            @ApiParam(value = "Category of customers", required = true) @PathVariable String customerCategory) {
+    public List<Object> getFallbackAllProductByDiscount(@PathVariable int timeDuration,
+            @PathVariable String customerCategory) {
         return Arrays.asList(new Product(0000, "Nil Product", "", "", "", 0, 0, new HashSet<Discount>()));
     }
 
-    public List<Object> getFallbackAllProductByCategory(
-            @ApiParam(value = "Time duration in months", required = true) @PathVariable int timeDuration,
-            @ApiParam(value = "Category of customers", required = true) @PathVariable String customerCategory,
-            @ApiParam(value = "Product category", required = true) @PathVariable String category) {
+    public List<Object> getFallbackAllProductByCategory(@PathVariable int timeDuration,
+            @PathVariable String customerCategory, @PathVariable String category) {
         return Arrays.asList(new Product(00000, "No Product", category, "", "", 0, 0, new HashSet<Discount>()));
     }
 
-    public List<Object> getFallbackAllProductByBrand(
-            @ApiParam(value = "Time duration in months", required = true) @PathVariable int timeDuration,
-            @ApiParam(value = "Category of customers", required = true) @PathVariable String customerCategory,
-            @ApiParam(value = "Product brand", required = true) @PathVariable String brand) {
+    public List<Object> getFallbackAllProductByBrand(@PathVariable int timeDuration,
+            @PathVariable String customerCategory, @PathVariable String brand) {
         return Arrays.asList(new Product(000000, "No Product", "", brand, "", 0, 0, new HashSet<Discount>()));
     }
 }
