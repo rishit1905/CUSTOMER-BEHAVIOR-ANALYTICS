@@ -29,11 +29,6 @@ public class ProductController {
     @Autowired
     private ProductService service;
 
-    // @RequestMapping("/soldproductlist")
-    // List<Product> getAllProduct() {
-    // return (List<Product>) service.getAllProduct();
-    // }
-
     @RequestMapping(method = RequestMethod.GET, value = "/soldproductlist/{timeDuration}/{customerCategory}")
     @ApiOperation(value = "Gets list of products", notes = "Generates list of products and their sales details based on time interval, customer category")
     public List<Product> getProductSold(
@@ -50,11 +45,6 @@ public class ProductController {
 
         return list;
     }
-
-    // @RequestMapping("/soldproductlist/{id}")
-    // Optional<Product> getProductById(@PathVariable int id){
-    // return service.getProductById(id);
-    // }
 
     @RequestMapping(method = RequestMethod.GET, value = "/soldproductlist/priceRange/{timeDuration}/{customerCategory}/{startPrice}/{endPrice}")
     @ApiOperation(value = "Gets list of products", notes = "Generates list of products and their sales details based on time interval, customer category, range of product price")

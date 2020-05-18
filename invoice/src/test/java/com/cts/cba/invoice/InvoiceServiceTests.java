@@ -7,8 +7,6 @@ import static org.mockito.Mockito.when;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -16,12 +14,9 @@ import com.cts.cba.invoice.entity.Customer;
 import com.cts.cba.invoice.entity.Discount;
 import com.cts.cba.invoice.entity.Invoice;
 import com.cts.cba.invoice.entity.Product;
-import com.cts.cba.invoice.model.InvoiceResponse;
 import com.cts.cba.invoice.repository.InvoiceRepo;
 import com.cts.cba.invoice.service.InvoiceService;
-import com.google.common.collect.Lists;
 
-import org.assertj.core.util.Arrays;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.internal.util.collections.Sets;

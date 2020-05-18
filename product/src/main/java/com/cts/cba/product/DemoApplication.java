@@ -2,7 +2,6 @@ package com.cts.cba.product;
 
 import java.util.Collections;
 
-import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
@@ -34,8 +33,9 @@ public class DemoApplication {
 	public ApiInfo apiDetails() {
 		return new ApiInfo("Product",
 				"Enables genenerating a quantitative statistical report of purchase pattern of products. Generally deals with list of products.",
-				"1.0", "Free To Use", new Contact("Rishabh Nag", "http://localhost:9191/product", "Rishabh.Nag@cognizant.com"),
-				"API License", "http://localhost:9191/product", Collections.emptyList());
+				"1.0", "Free To Use",
+				new Contact("Rishabh Nag", "http://localhost:9191/product", "Rishabh.Nag@cognizant.com"), "API License",
+				"http://localhost:9191/product", Collections.emptyList());
 	}
 
 }

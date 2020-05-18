@@ -29,15 +29,6 @@ public class CustomerController {
     @Autowired
     private CustomerService service;
 
-    // @Autowired
-    // private UserSecurityService userSecurityService;
-
-    // @Autowired
-    // private JwtUtil jwtTokenUtil;
-
-    // @Autowired
-    // private AuthenticationManager authenticationManager;
-
     @RequestMapping(method = RequestMethod.GET, value = "/soldlocationlist/{timeDuration}/{customerCategory}/{location}")
     @ApiOperation(value = "Gets list of locations", notes = "Generates list of average sales details based on customer geoagraphy")
     public List<Product> getAllByLocation(
@@ -56,22 +47,4 @@ public class CustomerController {
         return list;
 
     }
-
-    // @RequestMapping(method = RequestMethod.POST, value = "/authenticate")
-    // public ResponseEntity<?> createAuthenticationToken(@RequestBody
-    // AuthenticationRequest authenticationRequest)
-    // throws Exception {
-    // try {
-    // authenticationManager.authenticate(new
-    // UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(),authenticationRequest.getPassword()));
-    // } catch (BadCredentialsException exception) {
-    // throw new Exception("Incorrect username or password !", exception);
-    // }
-
-    // final UserDetails userDetails =
-    // userSecurityService.loadUserByUsername(authenticationRequest.getUsername());
-
-    // final String jwt = jwtTokenUtil.generateToken(userDetails);
-    // return ResponseEntity.ok(new AuthenticationResponse(jwt));
-    // }
 }

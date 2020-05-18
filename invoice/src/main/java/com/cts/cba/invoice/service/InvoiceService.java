@@ -11,8 +11,6 @@ import com.cts.cba.invoice.repository.InvoiceRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javassist.NotFoundException;
-
 @Service
 public class InvoiceService {
 
